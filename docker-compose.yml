@@ -75,7 +75,7 @@ services:
             MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
             MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
         volumes: 
-            - ${MONGO_DATABASES_PATH}:/var/lib/mysql
+            - ${MONGO_DATABASES_PATH}:/var/lib/mongodb
 
     mongo-express:
         image: mongo-express
