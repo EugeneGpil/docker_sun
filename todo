@@ -2,5 +2,4 @@
 - mongo in workspace container should be with version
 - node should work
 - add supervisor container
-- non root user in all containers
-- add mongo db folder mapping
+- non root user in workspace containers

@@ -59,6 +59,8 @@ services:
         volumes: 
             - ${MYSQL_DATABASES_PATH}:/var/lib/mysql
             - ${PROJECT_PATH}:/usr/share/nginx/html
+        ports:
+            - ${MYSQL_PORT}:3306
 
     adminer:
         image: adminer
