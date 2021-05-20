@@ -3,7 +3,7 @@ ARG PHP_VERSION=7.2
 FROM php:${PHP_VERSION}-fpm
 
 RUN     apt-get update\
-        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev g++ -y\
+        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev -y\
         && docker-php-ext-configure intl\
         && docker-php-ext-install pdo_mysql zip intl\
         && yes | pecl install xdebug\
