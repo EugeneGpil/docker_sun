@@ -3,7 +3,8 @@ ARG PHP_VERSION=7.2
 FROM php:${PHP_VERSION}-fpm
 
 RUN     apt-get update\
-        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev -y\
+        && mkdir /usr/share/man/man1/\
+        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev libreoffice -y\
         && docker-php-ext-configure intl\
         && docker-php-ext-install pdo_mysql zip intl\
         && yes | pecl install xdebug\
@@ -14,4 +15,7 @@ RUN     apt-get update\
             xdebug.discover_client_host=1 \n\
             xdebug.client_host=server \n\
             xdebug.start_with_request=yes \n\
-        " >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini;
+        " >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini\
+        && mkdir /var/www/.cache\
+        && mkdir /var/www/.cache/dconf\
+        && chmod -R 777 /var/www
