@@ -23,6 +23,8 @@ services:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
         tty: true
+        extra_hosts:
+            - "dockerhost:$DOCKERHOST"
 
     redis:
 
@@ -61,6 +63,7 @@ services:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         ports:
             - ${MYSQL_PORT}:3306
+        working_dir: /usr/share/nginx/html
 
     adminer:
         image: adminer

@@ -4,11 +4,12 @@ FROM php:${PHP_VERSION}-fpm
 
 RUN     apt-get update\
         && mkdir /usr/share/man/man1/\
-        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev libreoffice -y\
+        && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev libreoffice libmagickwand-dev -y\
         && docker-php-ext-configure intl\
         && docker-php-ext-install pdo_mysql zip intl\
+        && pecl install imagick\
         && yes | pecl install xdebug\
-        && docker-php-ext-enable xdebug\
+        && docker-php-ext-enable xdebug imagick\
         && echo "\n\
             xdebug.mode=debug \n\
             xdebug.client_port=9050 \n\
