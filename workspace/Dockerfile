@@ -5,6 +5,7 @@ FROM laradock/workspace:2.5-${PHP_VERSION}
 ARG COMPOSER_VERSION=2.0.11
 ARG PHP_VERSION=7.2
 ARG REDIS_VERSION=6.0.10
+ARG IMAGICK_VERSION=3.4.3
 RUN     apt-get update\
         && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer\
         && composer self-update ${COMPOSER_VERSION}\
@@ -17,8 +18,6 @@ RUN     apt-get update\
         && cd redis-${REDIS_VERSION}\
         && make\
         && make install\
-        && pecl install imagick\
-        && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini\
         && yes | pecl install xdebug\
         && echo "\n\
             zend_extension=xdebug \n\
@@ -27,4 +26,6 @@ RUN     apt-get update\
             xdebug.discover_client_host=1 \n\
             xdebug.client_host=dockerhost \n\
             xdebug.start_with_request=yes \n\
-        " >> /etc/php/${PHP_VERSION}/cli/php.ini
+        " >> /etc/php/${PHP_VERSION}/cli/php.ini\
+        && pecl install -f imagick-${IMAGICK_VERSION}\
+        && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini\

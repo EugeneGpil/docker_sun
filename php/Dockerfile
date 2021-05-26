@@ -2,12 +2,13 @@ ARG PHP_VERSION=7.2
 
 FROM php:${PHP_VERSION}-fpm
 
+ARG IMAGICK_VERSION=3.4.3
 RUN     apt-get update\
         && mkdir /usr/share/man/man1/\
         && apt-get install libzip-dev zip unzip zlib1g-dev libicu-dev libreoffice libmagickwand-dev -y\
         && docker-php-ext-configure intl\
         && docker-php-ext-install pdo_mysql zip intl\
-        && pecl install imagick\
+        && pecl install -f imagick-${IMAGICK_VERSION}\
         && yes | pecl install xdebug\
         && docker-php-ext-enable xdebug imagick\
         && echo "\n\
