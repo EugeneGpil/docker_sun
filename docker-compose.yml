@@ -7,7 +7,7 @@ services:
             context: php
             args:
                 - PHP_VERSION=${PHP_VERSION}
-                - IMAGIC_VERSION=${IMAGIC_VERSION}
+                - IMAGICK_VERSION=${IMAGICK_VERSION}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
@@ -20,7 +20,7 @@ services:
                 - PHP_VERSION=${PHP_VERSION}
                 - COMPOSER_VERSION=${COMPOSER_VERSION}
                 - REDIS_VERSION=${REDIS_VERSION}
-                - IMAGIC_VERSION=${IMAGIC_VERSION}
+                - IMAGICK_VERSION=${IMAGICK_VERSION}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
