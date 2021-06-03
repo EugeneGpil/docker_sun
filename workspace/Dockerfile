@@ -28,4 +28,5 @@ RUN     apt-get update\
             xdebug.start_with_request=yes \n\
         " >> /etc/php/${PHP_VERSION}/cli/php.ini\
         && pecl install -f imagick-${IMAGICK_VERSION}\
-        && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini\
+        && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini
+        
