@@ -4,3 +4,4 @@ mysql_databases_new
 mysql_databases_old
 mysql_databases_stable
 mongo_databases
+gsuite-service-account.json

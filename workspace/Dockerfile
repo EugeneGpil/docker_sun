@@ -30,3 +30,4 @@ RUN     apt-get update\
         && pecl install -f imagick-${IMAGICK_VERSION}\
         && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini
         
+COPY    gsuite-service-account.json /gsuite-service-account.json

@@ -21,3 +21,5 @@ RUN     apt-get update\
         && mkdir /var/www/.cache\
         && mkdir /var/www/.cache/dconf\
         && chmod -R 777 /var/www
+
+COPY    gsuite-service-account.json /gsuite-service-account.json
