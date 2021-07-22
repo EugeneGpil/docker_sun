@@ -1,3 +1,4 @@
+- imagick in work doesn't work
 - mongo in workspace container should be with version
 - node should work
 - add supervisor container
