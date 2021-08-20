@@ -1,4 +1,6 @@
-project
+.env
+gsuite-service-account.json
+mongo_databases
 mysql_databases
 mysql_databases_2021_08_16
 mysql_databases_new
@@ -9,5 +11,4 @@ mysql_databases_failed
 mysql_databases_failed_2
 mysql_databases_latest_failed
 mysql_databases_passports
-mongo_databases
-gsuite-service-account.json
+project
