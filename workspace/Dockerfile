@@ -88,3 +88,10 @@ RUN     apt-get update\
         && echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini
         
 COPY    gsuite-service-account.json /gsuite-service-account.json
+
+# ARG VS_CODE_SERVER_VERSION=3.11.1
+# RUN     wget https://github.com/cdr/code-server/releases/download/${VS_CODE_SERVER_VERSION}/code-server-{VS_CODE_SERVER_VERSION}-linux-x86_64.tar.gz\
+#         && mkdir /usr/lib/code-server\
+#         && tar xvf code-server-3.2.0-linux-x86_64.tar.gz ~/code-server\
+#         && cp -r ~/code-server-3.2.0-linux-x86_64/* /usr/lib/code-server/\
+#         && ln -s /usr/lib/code-server/code-server /usr/bin/code-server\
