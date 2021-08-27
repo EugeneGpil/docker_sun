@@ -23,3 +23,4 @@ RUN     apt-get update\
         && chmod -R 777 /var/www
 
 COPY    gsuite-service-account.json /gsuite-service-account.json
+COPY    fonts/* /usr/share/fonts/
