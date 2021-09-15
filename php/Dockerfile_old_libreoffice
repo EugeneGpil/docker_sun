@@ -22,17 +22,17 @@ RUN     apt-get update\
         && mkdir /var/www/.cache/dconf\
         && chmod -R 777 /var/www
 
-RUN     apt install wget -y
 ARG LIBREOFFICE_VERSION=5.1.6.2
 ARG LIBREOFFICE_SHORT_VERSION=5.1
-
-RUN     wget http://downloadarchive.documentfoundation.org/libreoffice/old/${LIBREOFFICE_VERSION}/deb/x86_64/LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb.tar.gz
-RUN     tar -xf LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb.tar.gz
-RUN     cd LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb/DEBS && dpkg -i *.deb
-RUN     apt install libxinerama1 -y
-RUN     apt install libdbus-glib-1-2 -y
-RUN     apt install libglu1-mesa -y
-RUN     echo "alias libreoffice='libreoffice${LIBREOFFICE_SHORT_VERSION}'" >> /etc/bash.bashrc
+RUN     apt install wget -y\
+        && wget http://downloadarchive.documentfoundation.org/libreoffice/old/${LIBREOFFICE_VERSION}/deb/x86_64/LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb.tar.gz\
+        && tar -xf LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb.tar.gz\
+        && cd LibreOffice_${LIBREOFFICE_VERSION}_Linux_x86-64_deb/DEBS && dpkg -i *.deb\
+        && apt install libxinerama1 -y\
+        && apt install libdbus-glib-1-2 -y\
+        # && apt install libglu1-mesa -y
+        && apt install libglu1-mesa -y\
+        && echo "alias libreoffice='libreoffice${LIBREOFFICE_SHORT_VERSION}'" >> /etc/bash.bashrc\
 
 COPY    gsuite-service-account.json /gsuite-service-account.json
 COPY    fonts/* /usr/share/fonts/

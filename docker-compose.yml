@@ -8,8 +8,8 @@ services:
             args:
                 - PHP_VERSION=${PHP_VERSION}
                 - IMAGICK_VERSION=${IMAGICK_VERSION}
-                - LIBREOFFICE_VERSION:${LIBREOFFICE_VERSION}
-                - LIBREOFFICE_SHORT_VERSION:${LIBREOFFICE_SHORT_VERSION}
+                - LIBREOFFICE_VERSION=${LIBREOFFICE_VERSION}
+                - LIBREOFFICE_SHORT_VERSION=${LIBREOFFICE_SHORT_VERSION}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
