@@ -23,13 +23,14 @@ services:
                 - COMPOSER_VERSION=${COMPOSER_VERSION}
                 - REDIS_VERSION=${REDIS_VERSION}
                 - IMAGICK_VERSION=${IMAGICK_VERSION}
-                - VS_CODE_SERVER_VERSION=${VS_CODE_SERVER_VERSION}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
         tty: true
         extra_hosts:
             - "dockerhost:$DOCKERHOST"
+        command:
+            - code-server
 
     redis:
 
