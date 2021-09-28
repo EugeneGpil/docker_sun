@@ -7,30 +7,14 @@ services:
             context: php
             args:
                 - PHP_VERSION=${PHP_VERSION}
-                - IMAGICK_VERSION=${IMAGICK_VERSION}
-                - LIBREOFFICE_VERSION=${LIBREOFFICE_VERSION}
-                - LIBREOFFICE_SHORT_VERSION=${LIBREOFFICE_SHORT_VERSION}
-        volumes:
-            - ${PROJECT_PATH}:/usr/share/nginx/html
-        working_dir: /usr/share/nginx/html
-        restart: unless-stopped
-
-    workspace:
-        build:
-            context: workspace
-            args:
-                - PHP_VERSION=${PHP_VERSION}
                 - COMPOSER_VERSION=${COMPOSER_VERSION}
                 - REDIS_VERSION=${REDIS_VERSION}
                 - IMAGICK_VERSION=${IMAGICK_VERSION}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
-        tty: true
-        extra_hosts:
-            - "dockerhost:$DOCKERHOST"
-        command:
-            - code-server
+        restart: unless-stopped
+        command: bash -c "service php7.2-fpm start && tail -F anything"
 
     redis:
 
