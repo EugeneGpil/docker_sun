@@ -61,13 +61,15 @@ RUN apt update && \
             xdebug.client_host=localhost \n\
             xdebug.start_with_request=yes \n\
         " >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+
+ARG PHP_VERSION=7.2
 RUN pecl install mongodb && \
     echo "extension=mongodb.so" >> /etc/php/${PHP_VERSION}/mods-available/mongodb.ini && \
     ln -s /etc/php/${PHP_VERSION}/mods-available/mongodb.ini /etc/php/${PHP_VERSION}/cli/conf.d/30-mongodb.ini && \
     add-apt-repository ppa:libreoffice/ppa && \
     apt update && \
     apt install libreoffice -y && \
-    # apt install imagemagick -7 && \
     mkdir /var/www && \
     chown www-data /var/www && \
     echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/fpm/php.ini
+    
