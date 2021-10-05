@@ -15,6 +15,10 @@ services:
         working_dir: /usr/share/nginx/html
         restart: unless-stopped
         command: bash -c "service php7.2-fpm start && tail -F anything"
+        extra_hosts:
+            - "${DN_RU}:$DOCKERHOST"
+            - "${ADMIN_DN_RU}:$DOCKERHOST"
+            - "${AJAX_DN_RU}:$DOCKERHOST"
 
     redis:
 

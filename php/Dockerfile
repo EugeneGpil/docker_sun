@@ -45,22 +45,7 @@ RUN apt update && \
     cd .. && \
     rm -rf redis-${REDIS_VERSION} && \
     pecl install -f imagick-${IMAGICK_VERSION} && \
-    echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini && \
-    echo "\n\
-        zend_extension=xdebug \n\
-        xdebug.mode=debug \n\
-        xdebug.client_port=9050 \n\
-        xdebug.discover_client_host=1 \n\
-        xdebug.client_host=localhost \n\
-        xdebug.start_with_request=yes \n\
-    " >> /etc/php/${PHP_VERSION}/cli/php.ini && \
-    echo "\n\
-            xdebug.mode=debug \n\
-            xdebug.client_port=9050 \n\
-            xdebug.discover_client_host=1 \n\
-            xdebug.client_host=localhost \n\
-            xdebug.start_with_request=yes \n\
-        " >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini
+    echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/cli/php.ini
 
 ARG PHP_VERSION=7.2
 RUN pecl install mongodb && \
@@ -71,5 +56,20 @@ RUN pecl install mongodb && \
     apt install libreoffice -y && \
     mkdir /var/www && \
     chown www-data /var/www && \
-    echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/fpm/php.ini
-    
+    echo "extension=imagick.so" >> /etc/php/${PHP_VERSION}/fpm/php.ini && \
+    apt-get install php${PHP_VERSION}-curl -y && \
+    apt-get install nano -y
+
+RUN echo "\n\
+        xdebug.remote_autostart = 1 \n\
+        xdebug.remote_enable = 1 \n\
+        xdebug.remote_port = 9050 \n\
+    " >> /etc/php/${PHP_VERSION}/fpm/conf.d/20-xdebug.ini && \
+    echo "\n\
+        zend_extension=xdebug \n\
+        xdebug.mode=debug \n\
+        xdebug.client_port=9051 \n\
+        xdebug.discover_client_host=1 \n\
+        xdebug.client_host=localhost \n\
+        xdebug.start_with_request=yes \n\
+    " >> /etc/php/${PHP_VERSION}/cli/php.ini
