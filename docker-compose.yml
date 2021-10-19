@@ -10,6 +10,7 @@ services:
                 - COMPOSER_VERSION=${COMPOSER_VERSION}
                 - REDIS_VERSION=${REDIS_VERSION}
                 - IMAGICK_VERSION=${IMAGICK_VERSION}
+                - DOCKERHOST=${DOCKERHOST}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
@@ -19,6 +20,8 @@ services:
             - "${DN_RU}:$DOCKERHOST"
             - "${ADMIN_DN_RU}:$DOCKERHOST"
             - "${AJAX_DN_RU}:$DOCKERHOST"
+        environment:
+            DOCKERHOST: $DOCKERHOST
 
     redis:
 
@@ -38,8 +41,6 @@ services:
         restart: unless-stopped
         ports:
             - ${NGINX_PORT}:80
-        environment:
-            - NGINX_HOST=localhost
         depends_on:
             - php
     

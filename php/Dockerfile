@@ -60,7 +60,13 @@ RUN pecl install mongodb && \
     apt-get install php${PHP_VERSION}-curl -y && \
     apt-get install nano -y
 
+ARG PHP_VERSION=7.2
+ARG DOCKERHOST=172.17.0.1
 RUN echo "\n\
+        clear_env = no \n\
+        env[\"DOCKERHOST\"] = ${DOCKERHOST} \n\
+    " >> /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf && \
+    echo "\n\
         xdebug.remote_autostart = 1 \n\
         xdebug.remote_enable = 1 \n\
         xdebug.remote_port = 9050 \n\
