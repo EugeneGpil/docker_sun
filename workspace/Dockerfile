@@ -60,6 +60,12 @@ RUN pecl install mongodb && \
     apt-get install php${PHP_VERSION}-curl -y && \
     apt-get install nano -y
 
+ARG NODE_VERSION=10.9.0
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash && \
+    export NVM_DIR="$HOME/.nvm" && \
+    . $NVM_DIR/nvm.sh && \
+    nvm install ${NODE_VERSION}
+
 ARG PHP_VERSION=7.2
 ARG DOCKERHOST=172.17.0.1
 RUN echo "\n\
@@ -79,3 +85,6 @@ RUN echo "\n\
         xdebug.client_host=localhost \n\
         xdebug.start_with_request=yes \n\
     " >> /etc/php/${PHP_VERSION}/cli/php.ini
+
+ARG NUXT_PORT=3009
+EXPOSE ${NUXT_PORT}
