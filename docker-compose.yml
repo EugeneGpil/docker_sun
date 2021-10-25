@@ -13,6 +13,7 @@ services:
                 - DOCKERHOST=${DOCKERHOST}
                 - NODE_VERSION=${NODE_VERSION}
                 - NUXT_PORT=${NUXT_PORT}
+                - INSTALL_XDEBUG=${INSTALL_XDEBUG}
         volumes:
             - ${PROJECT_PATH}:/usr/share/nginx/html
         working_dir: /usr/share/nginx/html
