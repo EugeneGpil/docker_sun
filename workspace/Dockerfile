@@ -75,6 +75,7 @@ EXPOSE ${NUXT_PORT}
 ARG INSTALL_XDEBUG=false
 ARG PHP_VERSION=7.2
 RUN if [ "$INSTALL_XDEBUG" = "true" ] ; then \
+        apt-get install php${PHP_VERSION}-xdebug -y && \
         echo "\n\
             xdebug.remote_autostart = 1 \n\
             xdebug.remote_enable = 1 \n\
@@ -83,7 +84,7 @@ RUN if [ "$INSTALL_XDEBUG" = "true" ] ; then \
         echo "\n\
             zend_extension=xdebug \n\
             xdebug.mode=debug \n\
-            xdebug.client_port=9051 \n\
+            xdebug.client_port=9050 \n\
             xdebug.discover_client_host=1 \n\
             xdebug.client_host=localhost \n\
             xdebug.start_with_request=yes \n\
