@@ -90,3 +90,6 @@ RUN if [ "$INSTALL_XDEBUG" = "true" ] ; then \
             xdebug.start_with_request=yes \n\
         " >> /etc/php/${PHP_VERSION}/cli/php.ini \
     ; fi
+
+ARG PHP_VERSION=7.2
+RUN apt-get install php${PHP_VERSION}-intl -y
